@@ -42,6 +42,7 @@ int main()
     printf("Number of elements in g: %d\n", N);
     printf("Number of elements in h: %d\n", N+M-2);
 
+    // Print every element of H to .csv file
     for (int i = 0; i < N+M-1; i++)
     {
         sprintf(buffer, "H[%d] = %d\n", i, H[i]);
