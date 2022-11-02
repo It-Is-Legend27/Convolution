@@ -1,4 +1,25 @@
-// Angel Badillo and James
+//**************************************************************
+// Assignment #5
+// Name: Angel Badillo, and James Nealley
+// GPU Programming Date: 11/07/22
+//***************************************************************
+// How to run:
+// This program is to be run on the TACC cluster using the SBATCH
+// shell script named "AngelBadilloA5Script".
+// The command to be run in the bash terminal is:
+// sbatch AngelBadilloA5Script
+//
+// Description:
+// This program, written in C, creates 3 finite sequences (arrays),
+// F, G, H, where F is 4096 elements, G is 1024 elements, and H
+// is 5118 elements.
+// Then, F will have a sequence of numbers from 1 up to 4096,
+// and G will have a sequence of numbers from 1024 down to 1.
+// H will be temporarily be intialized to all 0s.
+// Next, the convolution of F and G, F * G, will be calculated and
+// and stored in H. Finally, the contents of H will be printed
+// in column fashion to AngelBadilloA5.csv.
+//*****************************************************************
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -8,8 +29,13 @@
 // Number of elements in G
 #define N 1024
 
+// Size of buffer to hold formatted string
+#define STR_SZ 128
+
 // Simple buffer to hold formatted string before printing
-typedef char string_buffer[N];
+// Will be size 128, just to be safe and avoid accessing out
+// of bounds.
+typedef char string_buffer[STR_SZ];
 
 int main()
 {
@@ -58,7 +84,7 @@ int main()
     printf("Number of elements in h: %d\n", N+M-2);
 
     // Print every element of H to .csv file
-    for (int i = 0; i <= N+M-1; i++)
+    for (int i = 0; i <= N+M-2; i++)
     {
         // Create formatted string, store in buffer, output_string
         sprintf(output_string, "H[%d] = %d\n", i, H[i]);
