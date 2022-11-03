@@ -45,10 +45,13 @@ int main()
     // Create (if does not exist) and open file for write
     FILE* outputFilePtr = fopen("AngelBadilloA5.csv", "w");
     
-    // Create arrays
+    // Create arrays for sequences F, G, and resulting H
     int F[M];
     int G[N];
     int H[N+M-2] = {0};
+
+    // Checksum to be calculated once H is computed
+    int checkSum = 0;
 
     // Initialize F starting from 1 up to 4096
     for (int m = 0; m < M; m++)
