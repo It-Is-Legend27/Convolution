@@ -38,7 +38,7 @@
 module list
 pwd
 date
-g++ serialCodeMaverick2.c -o a.out
+g++ AngelBadilloA5.c -o a.out
 # Launch serial code...
 
 ./a.out         # Do not use ibrun or any other MPI launcher
