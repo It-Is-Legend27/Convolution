@@ -77,11 +77,14 @@ int main()
     printf("Number of elements in g: %d\n", N);
     printf("Number of elements in h: %d\n", O);
 
+     // Print labels for columns to .csv file
+    fputs("H[i], value\n", outputFilePtr);
+
     // Print every element of H to .csv file
     for (int i = 0; i < O; i++)
     {
         // Create formatted string, store in buffer, output_string
-        sprintf(output_string, "H[%d] = %d\n", i, H[i]);
+        sprintf(output_string, "H[%d], %d\n", i, H[i]);
 
         // Print output_string to .csv file
         fputs(output_string, outputFilePtr);
