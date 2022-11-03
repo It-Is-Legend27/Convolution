@@ -24,13 +24,13 @@
 #include <stdlib.h>
 
 // Number of elements in F
-#define M 4096
+#define M 5
 
 // Number of elements in G
-#define N 1024
+#define N 3
 
 // Number of elements in H
-#define O N + M - 1
+#define O N+M-1
 
 // Size of buffer to hold formatted string
 #define STR_SZ 128
@@ -44,29 +44,17 @@ int main()
 {
     // For use to hold formatted string
     string_buffer output_string;
-
+    
     // Create (if does not exist) and open file for write
-    FILE *outputFilePtr = fopen("AngelBadilloA5.csv", "w");
-
+    FILE* outputFilePtr = fopen("test.csv", "w");
+    
     // Create arrays for sequences F, G, and resulting H
-    int F[M];
-    int G[N];
+    int F[M] = {1,2,3,4,5};
+    int G[N] = {5,6,7};
     int H[O] = {0};
 
     // Checksum to be calculated once H is computed
     int checkSum = 0;
-
-    // Initialize F starting from 1 up to 4096
-    for (int m = 0; m < M; m++)
-    {
-        F[m] = m + 1;
-    }
-
-    // Initialize G from 1024 down to 1
-    for (int n = 0; n < N; n++)
-    {
-        G[n] = N - n;
-    }
 
     // Computes all values of H(n) from 0 up to N+M-2
     for (int n = 0; n < O; n++)
@@ -77,13 +65,13 @@ int main()
         {
             // Only performed if indices are valid.
             // If m < 0 and m >= M and n < 0 and n <= N, this
-            // instruction will be skipped as the value to be added to the sum
+            // instruction will be skipped as the item to be added to the sum
             // will be 0.
-            if (m >= 0 && m < M && (n - m) >= 0 && (n - m) < N)
-                H[n] += F[m] * G[n - m];
+            if(m >= 0 && m < M && (n-m) >= 0 && (n-m) < N)
+            H[n] += F[m]*G[n-m];
         }
     }
-
+    
     // Printing number of elements in each array of values
     printf("Number of elements in f: %d\n", M);
     printf("Number of elements in g: %d\n", N);
@@ -98,7 +86,7 @@ int main()
         // Print output_string to .csv file
         fputs(output_string, outputFilePtr);
     }
-
+    
     // Close the file
     fclose(outputFilePtr);
 }
