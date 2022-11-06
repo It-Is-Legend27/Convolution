@@ -49,12 +49,12 @@ int main()
     FILE *outputFilePtr = fopen("AngelBadilloA5.csv", "w");
 
     // Create arrays for sequences F, G, and resulting H
-    int F[M];
-    int G[N];
-    int H[O] = {0};
+    long long F[M];
+    long long G[N];
+    long long H[O] = {0};
 
     // Checksum to be calculated once H is computed
-    int checkSum = 0;
+    long long checkSum = 0;
 
     // Initialize F starting from 1 up to 4096
     for (int m = 0; m < M; m++)
@@ -82,13 +82,16 @@ int main()
             if (m >= 0 && m < M && (n - m) >= 0 && (n - m) < N)
                 H[n] += F[m] * G[n - m];
         }
+        // Add to check sum
+        checkSum += H[n];
     }
 
     // Printing number of elements in each array of values
     printf("Number of elements in f: %d\n", M);
     printf("Number of elements in g: %d\n", N);
     printf("Number of elements in h: %d\n", O);
-
+    printf("Checksum results: %lld\n", checkSum);
+    
     // Print labels for columns to .csv file
     fputs("n, H[n]\n", outputFilePtr);
 
@@ -96,7 +99,7 @@ int main()
     for (int i = 0; i < O; i++)
     {
         // Create formatted string, store in buffer, output_string
-        sprintf(output_string, "%d, %d\n", i, H[i]);
+        sprintf(output_string, "%d, %lld\n", i, H[i]);
 
         // Print output_string to .csv file
         fputs(output_string, outputFilePtr);
