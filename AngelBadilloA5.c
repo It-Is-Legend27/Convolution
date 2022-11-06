@@ -91,7 +91,7 @@ int main()
     printf("Number of elements in g: %d\n", N);
     printf("Number of elements in h: %d\n", O);
     printf("Checksum results: %lld\n", checkSum);
-    
+
     // Print labels for columns to .csv file
     fputs("n, H[n]\n", outputFilePtr);
 
